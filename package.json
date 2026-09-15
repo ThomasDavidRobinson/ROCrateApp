@@ -1,0 +1,19 @@
+{
+  "name": "rocrateapp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Package PDF research materials into an RO-Crate, entirely in the browser.",
+  "scripts": {
+    "build": "esbuild js/main.js --bundle --outfile=dist/bundle.js --format=iife --target=chrome110",
+    "watch": "esbuild js/main.js --bundle --outfile=dist/bundle.js --format=iife --target=chrome110 --watch",
+    "start": "npm run build && http-server -c-1 -p 5500 ."
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "ro-crate": "^3.7.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "http-server": "^14.1.1"
+  }
+}

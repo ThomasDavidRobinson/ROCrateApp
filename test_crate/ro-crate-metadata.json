@@ -1,0 +1,129 @@
+{
+  "@context": [
+    "https://w3id.org/ro/crate/1.3/context",
+    {
+      "@vocab": "http://schema.org/"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "test_files",
+      "description": "desc",
+      "datePublished": "2026-09-15",
+      "license": {
+        "@id": "https://creativecommons.org/cc-licenses/"
+      },
+      "hasPart": [
+        {
+          "@id": "an0022_crocodile.pdf"
+        },
+        {
+          "@id": "gu0001_baleh.pdf"
+        },
+        {
+          "@id": "KAYT_2014_258_book.pdf"
+        },
+        {
+          "@id": "KAYT_2014_260_text.pdf"
+        },
+        {
+          "@id": "LO_Sea_Creatures_first_language.pdf"
+        },
+        {
+          "@id": "Mi-Tjiwilirr i Wulumen Tulh.pdf"
+        },
+        {
+          "@id": "NG_Whats_this_Eng.pdf"
+        },
+        {
+          "@id": "pi0004_maku_maku.pdf"
+        }
+      ]
+    },
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "identifier": "ro-crate-metadata.json",
+      "about": {
+        "@id": "./"
+      },
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.3"
+      }
+    },
+    {
+      "@id": "an0022_crocodile.pdf",
+      "@type": "File",
+      "name": "an0022_crocodile",
+      "description": "description",
+      "encodingFormat": "application/pdf",
+      "contentSize": "2789608",
+      "dateCreated": "1601-01-01"
+    },
+    {
+      "@id": "gu0001_baleh.pdf",
+      "@type": "File",
+      "name": "gu0001_baleh",
+      "description": "desc",
+      "encodingFormat": "application/pdf",
+      "contentSize": "376811",
+      "dateCreated": "1601-01-01"
+    },
+    {
+      "@id": "KAYT_2014_258_book.pdf",
+      "@type": "File",
+      "name": "KAYT_2014_258_book",
+      "description": "desc",
+      "encodingFormat": "application/pdf",
+      "contentSize": "11529880",
+      "dateCreated": "2024-01-24"
+    },
+    {
+      "@id": "KAYT_2014_260_text.pdf",
+      "@type": "File",
+      "name": "KAYT_2014_260_text",
+      "description": "desc",
+      "encodingFormat": "application/pdf",
+      "contentSize": "7403810",
+      "dateCreated": "2023-09-22"
+    },
+    {
+      "@id": "LO_Sea_Creatures_first_language.pdf",
+      "@type": "File",
+      "name": "LO_Sea_Creatures_first_language",
+      "description": "desc",
+      "encodingFormat": "application/pdf",
+      "contentSize": "17737389",
+      "dateCreated": "2026-09-15"
+    },
+    {
+      "@id": "Mi-Tjiwilirr i Wulumen Tulh.pdf",
+      "@type": "File",
+      "name": "Mi-Tjiwilirr i Wulumen Tulh",
+      "description": "desc",
+      "encodingFormat": "application/pdf",
+      "contentSize": "2596474",
+      "dateCreated": "2017-06-08"
+    },
+    {
+      "@id": "NG_Whats_this_Eng.pdf",
+      "@type": "File",
+      "name": "NG_Whats_this_Eng",
+      "description": "desc",
+      "encodingFormat": "application/pdf",
+      "contentSize": "2331694",
+      "dateCreated": "2026-09-15"
+    },
+    {
+      "@id": "pi0004_maku_maku.pdf",
+      "@type": "File",
+      "name": "pi0004_maku_maku",
+      "description": "desc",
+      "encodingFormat": "application/pdf",
+      "contentSize": "4958888",
+      "dateCreated": "2026-09-15"
+    }
+  ]
+}

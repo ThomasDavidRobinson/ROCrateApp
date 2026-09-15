@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RO-Crate Packager</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="app-header">
+    <h1>RO-Crate Packager</h1>
+    <p class="tagline">
+      Select a folder of PDFs, complete the required metadata, and package it as an
+      <a href="https://www.researchobject.org/ro-crate/specification/1.3/" target="_blank" rel="noopener">RO-Crate&nbsp;1.3</a>.
+    </p>
+  </header>
+
+  <main id="main">
+    <section id="unsupported-notice" class="notice notice-error" role="alert" hidden>
+      <p>
+        This browser doesn't support the File System Access API, which this application needs to
+        read a folder and save the crate back to your device. Please use a recent version of
+        Chrome, Edge, or another Chromium-based browser.
+      </p>
+    </section>
+
+    <section id="select-section" aria-labelledby="select-heading">
+      <h2 id="select-heading">1. Select a folder</h2>
+      <p>
+        Choose a folder on your device. Every PDF inside it, including subfolders, will be read
+        into this page for you to describe. Nothing is uploaded anywhere.
+      </p>
+      <button id="select-folder-btn" type="button" class="btn btn-primary">Select folder&hellip;</button>
+      <p id="select-summary" class="summary-text" aria-live="polite"></p>
+    </section>
+
+    <section id="confirm-section" aria-labelledby="confirm-heading" hidden>
+      <h2 id="confirm-heading">Confirm folder</h2>
+      <p id="confirm-summary" class="summary-text"></p>
+      <div id="confirm-tree" class="confirm-tree" role="tree" aria-label="Folder contents"></div>
+      <div class="actions-row">
+        <button id="confirm-use-btn" type="button" class="btn btn-primary">Use this folder</button>
+        <button id="confirm-again-btn" type="button" class="btn btn-secondary">Choose a different folder&hellip;</button>
+      </div>
+    </section>
+
+    <section id="crate-section" aria-labelledby="crate-heading" hidden>
+      <h2 id="crate-heading">2. Crate details</h2>
+      <p>These describe the collection as a whole and are required by the RO-Crate 1.3 standard.</p>
+      <form id="crate-form" novalidate></form>
+    </section>
+
+    <section id="files-section" aria-labelledby="files-heading" hidden>
+      <h2 id="files-heading">3. PDF files (<span id="files-count">0</span>)</h2>
+      <p id="files-empty-notice" class="notice notice-warning" hidden>
+        No PDF files were found in the selected folder (including its subfolders).
+      </p>
+      <ul id="files-list" class="files-list"></ul>
+    </section>
+
+    <section id="actions-section" aria-labelledby="actions-heading" hidden>
+      <h2 id="actions-heading">4. Generate &amp; save</h2>
+      <p id="validation-summary" class="summary-text" aria-live="polite"></p>
+      <div class="actions-row">
+        <button id="generate-btn" type="button" class="btn btn-primary" disabled>Generate RO-Crate</button>
+        <button id="save-btn" type="button" class="btn btn-primary" disabled>Save crate to folder&hellip;</button>
+      </div>
+      <details id="preview-details" hidden>
+        <summary>Preview ro-crate-metadata.json</summary>
+        <pre id="preview-json"></pre>
+      </details>
+    </section>
+
+    <div id="status-region" role="status" aria-live="polite" class="visually-hidden"></div>
+    <div id="error-region" class="notice notice-error" role="alert" aria-live="assertive"></div>
+  </main>
+
+  <script src="dist/bundle.js"></script>
+</body>
+</html>
