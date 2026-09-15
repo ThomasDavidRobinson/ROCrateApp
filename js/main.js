@@ -67,6 +67,12 @@ function baseName(relativePath) {
   return last.replace(/\.pdf$/i, '');
 }
 
+/** Computes a hex-encoded SHA-256 digest of a buffer, via the browser's native crypto API. */
+async function sha256Hex(arrayBuffer) {
+  const digest = await crypto.subtle.digest('SHA-256', arrayBuffer);
+  return Array.from(new Uint8Array(digest)).map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
 function setStatus(message) {
   els.statusRegion.textContent = message;
 }
@@ -176,6 +182,7 @@ async function loadFileState(relativePath, file) {
     relativePath,
     file,
     arrayBuffer: null,
+    sha256: null,
     readError: null,
     metadata: null,
     originalDefaults: null,
@@ -185,6 +192,7 @@ async function loadFileState(relativePath, file) {
 
   try {
     entry.arrayBuffer = await file.arrayBuffer();
+    entry.sha256 = await sha256Hex(entry.arrayBuffer);
     const pdfMeta = await extractPdfMetadata(entry.arrayBuffer);
     entry.metadata = {
       name: pdfMeta.title || baseName(relativePath),
@@ -325,6 +333,7 @@ function renderFileCard(entry) {
     createReadOnlyItem('Encoding format', entry.metadata.encodingFormat),
     createReadOnlyItem('Content size', `${entry.metadata.contentSize} bytes`),
   );
+  if (entry.sha256) readOnlyRow.append(createReadOnlyItem('SHA-256', entry.sha256));
   if (entry.pdfInfo?.producer) readOnlyRow.append(createReadOnlyItem('PDF producer', entry.pdfInfo.producer));
   if (entry.pdfInfo?.modificationDate) readOnlyRow.append(createReadOnlyItem('Last modified (PDF)', entry.pdfInfo.modificationDate));
   fieldsWrapper.appendChild(readOnlyRow);
@@ -384,7 +393,7 @@ function handleGenerate() {
   try {
     const crateJson = buildCrate(
       state.crateMeta,
-      state.files.map((entry) => ({ relativePath: entry.relativePath, metadata: entry.metadata })),
+      state.files.map((entry) => ({ relativePath: entry.relativePath, metadata: entry.metadata, sha256: entry.sha256 })),
     );
     state.generatedCrateJson = crateJson;
     els.previewJson.textContent = JSON.stringify(crateJson, null, 2);
@@ -410,7 +419,7 @@ async function handleSave() {
   }
   state.generatedCrateJson = buildCrate(
     state.crateMeta,
-    state.files.map((entry) => ({ relativePath: entry.relativePath, metadata: entry.metadata })),
+    state.files.map((entry) => ({ relativePath: entry.relativePath, metadata: entry.metadata, sha256: entry.sha256 })),
   );
   els.previewJson.textContent = JSON.stringify(state.generatedCrateJson, null, 2);
 

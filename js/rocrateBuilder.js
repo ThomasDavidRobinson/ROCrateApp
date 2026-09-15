@@ -107,6 +107,7 @@ function buildFileEntity(file) {
   if (m.author?.trim()) entity.author = m.author.trim();
   if (m.keywords?.trim()) entity.keywords = m.keywords.trim();
   if (m.creationDate?.trim()) entity.dateCreated = m.creationDate.trim();
+  if (file.sha256) entity.sha256 = file.sha256;
   return entity;
 }
 
